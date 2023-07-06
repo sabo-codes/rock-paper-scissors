@@ -19,8 +19,11 @@ function capitalizeFirst(str) {
 //user prompt for rock, paper, scissors choice while choices are spelled correctly, and then compares against computer's choice to find winner
 do {
     playerSelection = prompt("Player Choice: ").toLowerCase();
-    } while (playerSelection !== "rock" && playerSelection !== "scissors" && playerSelection !== "paper")
+} while (playerSelection !== "rock" && playerSelection !== "scissors" && playerSelection !== "paper")
+document.querySelector(".player").textContent += playerSelection
+
 computerSelection = getComputerChoice();
+document.querySelector(".computer").textContent += computerSelection
 
 function shoot(playerSelection, computerSelection) {
             
@@ -33,3 +36,6 @@ function shoot(playerSelection, computerSelection) {
     }
 }
 console.log(shoot(playerSelection, computerSelection));
+document.querySelector(".result").textContent += shoot(playerSelection, computerSelection)
+
+
