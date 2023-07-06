@@ -1,3 +1,4 @@
+//randomly selects rock, paper, scissor for computer
 function getComputerChoice() {
     let computerChoice = Math.floor(Math.random() * 3)
     if (computerChoice === 0) {
@@ -9,25 +10,26 @@ function getComputerChoice() {
     }
 }
 
-playerSelection = prompt("Player Choice: ").toLowerCase();
-computerSelection = getComputerChoice()
+//capitalizes first letter and lowercase rest of letters (to be used for playerSelection)
+function capitalizeFirst(str) {
+    const capitalize = str[0].toUpperCase() + str.slice(1);
+    return capitalize;
+}
 
-function playRound(playerSelection, computerSelection) {
+//user prompt for rock, paper, scissors choice while choices are spelled correctly, and then compares against computer's choice to find winner
+do {
+    playerSelection = prompt("Player Choice: ").toLowerCase();
+    } while (playerSelection !== "rock" && playerSelection !== "scissors" && playerSelection !== "paper")
+computerSelection = getComputerChoice();
+
+function shoot(playerSelection, computerSelection) {
             
-    if (playerSelection === "rock" && computerSelection === "scissors") {
-        return `You win with ${playerSelection}! Rock beats scissors`
-    } else if (playerSelection === "paper" && computerSelection === "rock") {
-        return `You win with ${playerSelection}! Paper beats rock`
-    } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return `You win with ${playerSelection}! Scissors beats paper`
-    }  if (computerSelection === "rock" && playerSelection === "scissors") {
-        return `You lose with ${playerSelection}! Rock beats scissors`
-    } else if (computerSelection === "paper" && playerSelection === "rock") {
-        return `You lose with ${playerSelection}! Paper beats rock`
-    } else if (computerSelection === "scissors" && playerSelection === "paper") {
-        return `You lose with ${playerSelection}! Scissors beats paper`
+    if (playerSelection === computerSelection) {
+        return "It's a draw";
+    } else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper") {
+        return `Player wins! ${capitalizeFirst(playerSelection)} beats ${computerSelection}`;
     } else {
-        return "It's a draw"
+        return `Computer wins! ${capitalizeFirst(computerSelection)} beats ${playerSelection}`;
     }
 }
-console.log(playRound(playerSelection, computerSelection))
+console.log(shoot(playerSelection, computerSelection));
